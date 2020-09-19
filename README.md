@@ -1,1 +1,2 @@
 # CS202
+Present the foundation for Object Oriented Design. Using the C++ Programming language as a tool, Function and Operator Overaloading is covered and Templates will be introduced. The use of Pointers and Dynamic Memory are covered leading to the introduction of Lists (array based and linked lists), as well as coverage of other elementary data structures such as Stacks and Queues. Basic algorithms including Recursion, as well as the Standard Template Library, to operate on these elementary data structures, are covered.
