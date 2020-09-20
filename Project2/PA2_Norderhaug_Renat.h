@@ -21,7 +21,7 @@ bool writeArr(char fileName[], char nameTable[][8]);
 bool readFrom(char fileName[], struct RentalCar cars[5]);
 
 // writes to the fileName given
-bool writeTo(struct RentalCar stock[5]);
+bool writeTo(struct RentalCar cars[5]);
 
 // strcpy
 char *myStrCpy(char *destination, const char * src);
@@ -58,4 +58,4 @@ struct RentalCar {
   char model[MAX];
   float price;
   bool available;
-}
+};
