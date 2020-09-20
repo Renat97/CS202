@@ -10,11 +10,10 @@ using namespace std;
 
 //prototypes
 void getName(char name[]);
-void clear_screen();
 char correct(char name[]);
 bool readFrom(char fileName[], char nameTable[][8]);
 bool writeTo(char fileName[], char nameTable[][8]);
-void print_unordered(char nameTable[][8]);
+void printOut(char nameTable[][8]);
 size_t strLen(const char str[]);
 
 size_t MAX_SIZE = 50;
@@ -50,54 +49,32 @@ int main()
     cout << "successful write!" << endl;
 
   cout << "Here's what's in the file in unsorted order" << endl;
-  print_unordered(nameTwoDArray);
+  printOut(nameTwoDArray);
 
 	return 0;
 }
 int strLen(char a[]) {
-  int count = 0;
   int i = 0;
   while(a[i] != '\0') {
     a[i++];
-    count++;
   }
-  return count;
+  return i;
 }
-/*
- get_name:
-	pre: expects a character entry from the user
-	post: will have assigned an array to the variable name
-*/
-void getName(char name[])
+// prints the data stored in a 2d array without the data being ordered from the file.
+void printOut(char nameTable[][8])
 {
-	//clear_screen();
-	cout << "What's the name of the file that you want to read in/output data from/to?"
-  << endl;
-	cin.get(name, MAX_SIZE, '\n');
-  // clear the buffer by 100 characters
-	cin.ignore(100, '\n');
-  // if the char arrays length is greater than 100
-	if(strLen(name) > MAX_SIZE)
-	{
-    // keep reading the array in.
-		while(strLen(name) > MAX_SIZE)
-		{
-			cout << "Invalid entry. Try again:";
-			cin.get(name, MAX_SIZE, '\n');
-			cin.ignore(100, '\n');
-		}
-	}
-	return;
-}
-
-
-void clearScreen()
-{
-	int i = 0;
-	while(++i < 100) {
-		cout << '\n';
+  int j = 0;
+  while(j < 10) {
+    int k = 0;
+    while(k < 8) {
+      cout << nameTable[j][k++];
+    }
+      cout << endl;
+      ++j;
+    }
+    return;
   }
-}
+
 
 // checks if a name entered is the correct name.
 
@@ -178,7 +155,6 @@ bool writeTo(char fileName[], char nameTable [][8])
       name_out << endl;
       ++i;
 		}
-    cout << "succeeded" << endl;
     name_out.close();
     return true;
 	}
@@ -190,20 +166,26 @@ bool writeTo(char fileName[], char nameTable [][8])
   }
 }
 
-// prints the data stored in a 2d array without the data being ordered from the file.
-void print_unordered(char nameTable[][8])
+void getName(char name[])
 {
-  int j = 0;
-  while(j < 10) {
-    int k = 0;
-    while(k < 8) {
-      cout << nameTable[j][k++];
-    }
-      cout << endl;
-      ++j;
-    }
-    return;
-  }
+	cout << "What's the name of the file that you want to read in/output data from/to?"
+  << endl;
+	cin.get(name, MAX_SIZE, '\n');
+  // clear the buffer by 100 characters
+	cin.ignore(100, '\n');
+  // if the char arrays length is greater than 100
+	if(strLen(name) > MAX_SIZE)
+	{
+    // keep reading the array in.
+		while(strLen(name) > MAX_SIZE)
+		{
+			cout << "Invalid entry. Try again:";
+			cin.get(name, MAX_SIZE, '\n');
+			cin.ignore(100, '\n');
+		}
+	}
+	return;
+}
 
 
 
