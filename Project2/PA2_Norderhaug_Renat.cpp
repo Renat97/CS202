@@ -14,7 +14,7 @@ int main() {
   char fileName[5];
   // keep track of the days for each car
   int days;
-  cout << "What is the name of the file you'd like to read from?" << endl;
+  cout << "\nWhat's the name of your input file?\n";
   getInputFileName(fileName);
   // assign each array an individual file
   if(!readFrom(fileName, cars)) {
@@ -26,20 +26,44 @@ int main() {
 
   printAll(cars);
   cout << "lets sort the cars!" << endl;
+  if(!sortAscending(cars)) {
+    cout <<"Sorry that wasnt the right format!" << endl;
+    cout <<"program exiting" << endl;
+    return 0;
+  }
+  // prints to new fileName
+  cout << "insert new fileName to output data" << endl;
+  if(writeTo(cars)) {
+    cout << "cars written!" << endl;
+  } else {
+    cout << "Error loading!" << endl;
+    return 0;
+  }
 
+  // print out data for cars
+  cout <<"Price ascending order" << endl;
+  printAll(cars);
 
+  days = 0;
+  cout << "How many days do you want to rent the car for? " << endl;
+  cin >> days;
 
+  cout << "\n" << endl;
 
+  // how many days to rent, print available cars sorted
 
+  if(!selectCar(days, cars)) {
+    cout << "Sorry theres no cars" << endl;
+    return 0;
+  }
 
-
+  cout << "Thank you for using the program!" << endl;
   return 0;
 }
 
 /* assigns an array to the fileName */
 void getInputFileName(char name[])
 {
-	cout << "\nWhat's the name of your input file?\n";
 	cin.get(name, FILE_MAX, '\n');
 	cin.ignore(100, '\n');
 	if(strlen(name) > FILE_MAX)
@@ -155,21 +179,21 @@ bool readFrom(char fileName[], struct RentalCar cars[5])
 			int i = 0;
 			while(i < 5)
 			{
-          cout << "What is the year of the vehicle?" << endl;
+          //cout << "What is the year of the vehicle?" << endl;
 					nameIn >> cars[i].year;
 
 
-          cout << "What is the make of the vehicle?" << endl;
+          //cout << "What is the make of the vehicle?" << endl;
           nameIn >> cars[i].make;
 
 
-          cout << "What is the model of the vehicle?" << endl;
+          //cout << "What is the model of the vehicle?" << endl;
           nameIn >> cars[i].model;
 
-          cout << "What is the price of the vehicle to rent?" << endl;
+          //cout << "What is the price of the vehicle to rent?" << endl;
           nameIn >> cars[i].price;
 
-          cout << "Is this vehicle available?" << endl;
+          //cout << "Is this vehicle available?" << endl;
           nameIn >> cars[i].available;
           // clear the cache
           nameIn.ignore(100, '\n');
@@ -433,7 +457,7 @@ bool selectCar(int days, struct RentalCar cars[5])
   }
   else
   {
-    cout << "That care is unavailable" << endl;
+    cout << "That car is unavailable! please restart program" << endl;
     return false;
   }
 }
