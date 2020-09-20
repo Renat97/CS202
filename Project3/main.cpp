@@ -241,6 +241,10 @@ void myFavoriteAgency(agency *agency_ptr) {
 
 int myStringCompare(char * str1, char * str2)
 {
+    if(*str1 =='\0' && *str2 == '\0') {
+        return 1;
+    }
+    else {
     while(*str1==*str2) {
         if(*str1=='\0' || *str2=='\0') {
             break;
@@ -252,6 +256,7 @@ int myStringCompare(char * str1, char * str2)
         return 1;
     }
  }
+}
  return 0;
 }
 
