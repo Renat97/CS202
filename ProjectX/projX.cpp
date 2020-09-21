@@ -34,7 +34,7 @@ int main(){
 
   cout << endl << "Testing SmartPtr Assignment operator" << endl;
   SmartPtr sp3;
-  sp3 = sp1;  // Assignment operator
+  sp3 = sp1;  // Assignment operator tested
   sp3->SetIntVal(4);
   sp3->SetDoubleVal(0.0);
   cout << "Dereference Smart Pointer 1: " << *sp1 << endl;
