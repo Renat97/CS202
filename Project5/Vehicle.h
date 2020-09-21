@@ -2,7 +2,7 @@
 //  Vehicle.h
 //  Project5
 //
-//  Created by Renat Norderhaug on 9/23/17.
+//  Created by Renat Norderhaug on 9/29/17.
 //  Copyright © 2017 Renat Norderhaug. All rights reserved.
 //
 
@@ -12,6 +12,9 @@
 #include <iostream>
 #include <fstream>
 
+
+const float LLA = 0.0;
+
 using namespace std;
 class Vehicle {
 
@@ -19,10 +22,11 @@ class Vehicle {
   static int s_idgen;
 
   protected:
-  float m_lla[3]; // longitude - latitude, altitude
+  // float m_lla[3]; // longitude - latitude, altitude
   const int m_vin; // unique Vehicle identification number
 
   public:
+  float m_lla[3]; // longitude - latitude, altitude
   Vehicle();
   Vehicle(int vin, float* lla);
 
@@ -34,11 +38,11 @@ class Vehicle {
 
   Vehicle& operator= (const Vehicle& src);
   // return the vehicle vin
-  int GetVin () const;
+  int getVin () const;
 
-  float * GetLLA ();
+  float * getLLA ();
 
-  static int GetIdgen();
+  static int getIdgen();
 
   bool setLongAt(float* src);
 

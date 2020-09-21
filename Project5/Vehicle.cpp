@@ -7,28 +7,29 @@
 //
 #include <iostream>
 #include "Vehicle.h"
-
+// static variable must be declared like this at the top
 int Vehicle::s_idgen = 0;
 
-Vehicle::Vehicle(): m_vin(GetIdgen())
+// sets vehicle's vin to value of getter
+
+Vehicle::Vehicle(): m_vin(getIdgen())
 {
-  cout < "Vehicle #" << m_vin << ": Default-ctor" << endl;
+  cout << "Vehicle #" << m_vin << ": Default-ctor" << endl;
 }
 
-Vehicle::Vehicle(int vin, float *lla) : m_vin(SetVin(vin)) {
-  setLongLat(lla);
-  cout < "Vehicle #" << m_vin << ": Default-ctor" << endl;
+Vehicle::Vehicle(int vin, float *lla) : m_vin(setVin(vin)) {
+  setLongAt(lla);
+  cout << "Vehicle #" << m_vin << ": Default-ctor" << endl;
 }
 
-Vehicle::Vehicle(const Vehicle& vehicle) {
+Vehicle::Vehicle(const Vehicle& vehicle) : m_vin(vehicle.m_vin) {
   int i = 0;
   while (i < 3)
     {
-      m_lla[i] = Vehicle.m_lla[i];
+      m_lla[i] = vehicle.m_lla[i];
       i++;
     }
-  m_vin = vehicle.m_vin;
-  cout < "Vehicle #" << m_vin << ":Copy-ctor" << endl;
+  cout << "Vehicle # " << m_vin << ":Copy-ctor" << endl;
 }
 
 // destructor for the vehicle
@@ -36,17 +37,17 @@ Vehicle::~Vehicle() {
     cout << "Vehicle " << m_vin << ": Dtor" << endl;
 }
 
-int Vehicle::GetVin() const {
+int Vehicle::getVin() const {
   return m_vin;
 }
 
-float * Vehicle::GetLLA() {
+float * Vehicle::getLLA() {
   return m_lla;
 }
 
 // static int random number generator
-int Vehicle::GetIdgen () {
-  s_idgen = ((rand(%1335)) + 1335);
+int Vehicle::getIdgen () {
+  s_idgen = ((rand() % 1335) + 1335);
   return s_idgen;
 }
 
@@ -58,23 +59,23 @@ void Vehicle::Move (float* source) {
   cout << "Vehicle " << m_vin << "cannot move" << endl;
 }
 // each vehicle has a unique vin number
- int Vehicle::SetVin (int source)
+ int Vehicle::setVin (int source)
   {
     if(!(source >= 1335 && source <= 4000))
     {
       cout << "cant assign this value, assigning for you." << endl;
-      return GetIdgen();
+      return getIdgen();
     }
     else
       return source;
   }
-  bool Vehicle::SetLongLat (float * src)
+  bool Vehicle::setLongAt (float * src)
   {
     int i = 0;
     if(!src)
     {
       while(i < 3)
-        m_lla[i++] = DFLT_LLA;
+        m_lla[i++] = LLA;
     }
     else
     {
@@ -109,7 +110,7 @@ void Vehicle::Move (float* source) {
       m_lla[i] = src.m_lla[i];
       ++i;
     }
-    SetVin(srcV.m_vin);
+    setVin(src.m_vin);
    // returns the vehicle you are setting.
     return *this;
   }
