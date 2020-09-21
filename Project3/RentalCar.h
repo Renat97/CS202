@@ -1,6 +1,6 @@
 #ifndef RENTALCAR_H_
 #define RENTALCAR_H_
-
+#include "RentalCar.cpp"
 /**
 * RentalCar class
 */
